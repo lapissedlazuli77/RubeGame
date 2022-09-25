@@ -5,25 +5,27 @@ using UnityEngine;
 
 public class CenterCurrent : MonoBehaviour
 {
-    public bool currentfocus;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (this.transform.name == "Circle")
+        {
+            this.gameObject.tag = "Focus";
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.transform.currentfocus != true)
+        if (collision.gameObject.tag == "Untagged")
         {
-            this.currentfocus = false;
-            collision.gameObject.transform.currentfocus = true;
+            this.gameObject.tag = "Untagged";
+            collision.gameObject.tag = "Focus";
         }
     }
 }
